@@ -9,6 +9,7 @@ int main()
 
     time_t start, end;
     int num1, num2, num3, siz = sizeof(int), timelim = 30;
+    char op;
 
     start = time(NULL);
 
@@ -17,15 +18,39 @@ int main()
 
     printf("\nПривет, я Весёлый калькулятор! Давай играть?\n");
     end = time(NULL);
-    printf("Введи два числа, которые нужно сложить:");
-    scanf_s("%d%d", &num1, &num2);
+    printf("Введи два числа:");
+    scanf("%d%d", &num1, &num2);
 
-    printf("сумма равна: %d + %d = %d\n", num1, num2, num1 + num2);
-    num1 += num2;
+    printf("Что мне с ними сделать?:");
+    scanf("%c", &op);
+
+    if (op == "+"){
+        printf("сумма равна: %d + %d = %d\n", num1, num2, num1 + num2);
+        num1 += num2;
+    }
+
+    else if (op == "-"){
+        printf("разность равна: %d - %d = %d\n", num1, num2, num1 + num2);
+        num1 -= num2;
+    }
+
+    else if (op == "/"){
+        printf("частное равно: %d / %d = %d\n", num1, num2, num1 + num2);
+        num1 /= num2;
+    }
+
+    else if (op == "*"){
+        printf("произведение равно: %d * %d = %d\n", num1, num2, num1 + num2);
+        num1 *= num2;
+    }
+
 
     for ( ; difftime(end, start) < timelim; end = time(NULL)) {
         printf("Есть что добавить?\n");
-        scanf_s("%d", &num2);
+        if (scanf("%d", &num2) < 1) {
+            printf("Учитель Йода говорит: 'Только целый числа нужны нам. Ошибку допустил ты...'\n");
+            return 0;
+        }
         num3 = num1 + num2;
         printf("сумма равна: %d + %d = %d\n", num1, num2, num3);
         num1 = num3;
