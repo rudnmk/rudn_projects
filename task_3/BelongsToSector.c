@@ -1,24 +1,62 @@
 #include <stdio.h>  // Библиотека для работы с функциями ввода-вывода
+#include <stdbool.h>
 //#include <stdlib.h>	//Данная библиотека для многих функций Си нужна, но не здесь
 //#include <locale.h> // Библиотека для указания локации (региональной кодировки) для Visual Studio
 
-int bissectrice(double, double);
-int vertical(double, double);
-int horizontal(double, double);
+bool bisector(double, double);
+bool vertical(double, double);
+bool horizontal(double, double);
 
 // Конструкция с void main работает только на Си. Си++ такое уже не примет.
 // Дело в том, что при выполнении функции main() запускается новый Процесс (Process), к которой автоматически подколючается Runtime Library.
 // return 0; - является кодом выхода из этого Process. Поэтому необходим int main(){return0;}
 void main() {
 	//Тестировщик Вам сказал, что с вводными данными (-5,4) вывод не тот, что ожидаем. Исправьте это.
-	double x = -5.;
-	double y = 4.;
-	printf("%d", bissectrice(x, y) || vertical(x, y) && horizontal(x, y));
+	double x;
+	double y;
+
+	// x = 10. //проверка верхней правой области (должно вывести 1)
+	// y = 10.
+
+	
+	// x = 2. //проверка верхней правой области (должно вывести 0, точка вне области)
+	// y = 2.
+
+	// x = 4. //проверка верхней правой области (должно вывести 0, точка на границе области по x(пунктир))
+	// y = 10.
+
+	// x = 10. //проверка верхней правой области (должно вывести 0, точка на границе области по y(пунктир))
+	// y = 3.
+
+	// x = 0. //проверка нижней левой области (должно вывести 1, точка на границе графика(не пунктир))
+	// y = 0.
+
+	// x = -3. //проверка нижней левой области (должно вывести 1)
+	// y = 2.
+
+	// x = -4. //проверка нижней левой области (должно вывести 0, точка вне области(y > 3))
+	// y = 4.
+
+	// x = 5. //проверка нижней левой области (должно вывести 0, точка вне области(x > 4))
+	// y = -10.
+
+	// x = 4. //проверка нижней левой области (должно вывести 0, точка на границе области(x = 4)(пунктир))
+	// y = -10.
+
+	// x = -3. //проверка нижней левой области (должно вывести 0, точка на границе области(y = 3)(пунктир))
+	// y = 3.
+
+	printf("Введите значения для x: ");
+	scanf("%lf", &x);
+	printf("Введите значения для y: ");
+	scanf("%lf", &y);
+	printf("Результат: ");
+	printf("%d", (bisector(x, y) && !vertical(x, y) && !horizontal(x, y) && x != 4. && y != 3.) || (vertical(x, y) && horizontal(x, y)));
 	//return 0;
 }
 
-int bissectrice(double x, double y) {
-	int res = -1;
+bool bisector(double x, double y) {
+	bool res = false;
 	res = (y <= -x);
 	return res;
 }
@@ -38,13 +76,13 @@ int bissectrice(double x, double y) {
 	<<
 
 */
-int vertical(double x, double y) {
-	int res = -1;
+bool vertical(double x, double y) {
+	int res = false;
 	res = (x > 4);
 	return res;
 }
-int horizontal(double x, double y) {
-	int res = -1;
+bool horizontal(double x, double y) {
+	int res = false;
 	res = (y > 3);
 	return res;
 }
