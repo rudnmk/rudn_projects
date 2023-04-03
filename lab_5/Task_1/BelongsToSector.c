@@ -7,7 +7,7 @@
 bool bisector(double, double);
 bool vertical(double, double);
 bool horizontal(double, double);
-bool circle(double, double, double);
+bool circle(double, double);
 
 // Конструкция с void main работает только на Си. Си++ такое уже не примет.
 // Дело в том, что при выполнении функции main() запускается новый Процесс (Process), к которой автоматически подколючается Runtime Library.
@@ -16,7 +16,6 @@ void main() {
 	//Тестировщик Вам сказал, что с вводными данными (-5,4) вывод не тот, что ожидаем. Исправьте это.
 	double x;
 	double y;
-	double r = 5.0;
 
 	// График А
 	// x = 10. //проверка верхней правой области (должно вывести 1)
@@ -91,7 +90,7 @@ void main() {
 
 	printf("График Б) \n");
 	printf("Результат: ");
-	printf("%d", (circle(x, y, r) && (x >= 0 && x < 5) && (y >= 0 && y < 5)));
+	printf("%d", (circle(x, y) && (x >= 0 && x < 5) && (y >= 0 && y < 5)));
 	//return 0;
 }
 
@@ -117,7 +116,8 @@ bool bisector(double x, double y) {
 
 */
 
-bool circle(double x, double y, double r) {
+bool circle(double x, double y) {
+	double r = 5.0;
 	if (pow(x - 5, 2) + pow(y - 5, 2) != pow(r, 2)) {
 		return true;
 	}
