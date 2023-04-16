@@ -7,6 +7,7 @@ void main() {
 }
 
 int placement() {
+    int flag = 0;
     int arr[3][3] = {{ 1,2,3 }, { 4,5,6 }, { 7,8,9 }};
     int num;
     printf("Введите число: ");
@@ -18,7 +19,12 @@ int placement() {
                 int x = i + 1;
                 int y = j + 1;
                 printf("Ваше число находится в %i-ой строке и %i-ом столбце", x, y);
+                flag = 1;
+                break;
             }
         }
+    }
+    if (flag == 0) {
+        printf("Такого числа нет.");
     }
 }
