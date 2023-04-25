@@ -63,6 +63,17 @@ void comb_sort(int *arr, int size) {
     int step = size;
     int flag = 1;
     while ((step > 1) && (flag = 1)) {
-        
+        if (step > 1) {
+            step = (step / factor);
+        }
+        flag = 0;
+        int i = 0;
+        while (i + step < size) {
+            if (arr[i] > arr[i + step]) {
+                swap(arr, i, i + step);
+                flag = 1;
+            i++;
+            }
+        }
     }
 }
