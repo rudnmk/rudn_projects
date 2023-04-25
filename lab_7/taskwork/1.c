@@ -156,7 +156,7 @@ void comb_sort(char arr[][1024]) {
                 swap(copy_arr, i, i + step);
                 printf("[");
                 for (int j = 0; j < size; j++) {
-                    printf(" %s", arr[j]);
+                    printf(" %s", copy_arr[j]);
                 }
                 printf(" ] \n");
             }
