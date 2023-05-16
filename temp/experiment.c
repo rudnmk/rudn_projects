@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "temp.h"
 
-extern int from_another_file;
+char** gamefield;
 
-int a = 1;
+int createGameField(){ 
+    gamefield = malloc(30 * sizeof(char*));
+    for (int i = 0; i < 30; i++) {
+        gamefield[i] = malloc(30 * sizeof(char*));
+    }
 
-int sum(int x1) {
-    return x1;
+    gamefield[10][5] = '*';
+    gamefield[23][1] = '#';
+
+    return 0;
 }
 
 void main() {
-    printf("%i \n", from_another_file);
-    printf("%i", substruct(5, 3));
+    createGameField();
 }
