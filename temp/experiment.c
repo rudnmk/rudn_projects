@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "temp.h"
 
 char** gamefield;
 
@@ -17,4 +18,6 @@ int createGameField(){
 
 void main() {
     createGameField();
+    // int a = substruct(2, 3);
+    // printf("%i", a);
 }
