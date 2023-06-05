@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 	//free(symb);
 
 	//char string[15] = "NO";
-	////fgets(string, 10, my_file);
+	//fgets(string, 10, my_file);
 	//string[0] = fgetc(my_file);
 	//string[0] = fgetc(my_file);
 	//printf("%s\n\n", string);
