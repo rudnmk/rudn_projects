@@ -23,7 +23,7 @@ void main() {
     int col_2 = arr[3];
     free(arr);
     //int nums[100];
-    int count = 0;
+    //int count = 0;
     if (col_1 != row_2) {
         printf("Размерности матриц не позволяют подсчитать произведение! Кол-во столбцов первой(левой) матрицы должно быть равно кол-ву строк второй(правой) матрицы");
     }
@@ -32,29 +32,30 @@ void main() {
         char j;
         int cursor_1 = 0;
         int cursor_2 = 0;
-        for (cursor_1; cursor_1 < ((row_1 * 2 * col_1) + row_1 - 1); cursor_1 = cursor_1 + (2 * col_1) + 1 ) { //cursor_1 < 20; cursor_1 += 7
+        for (cursor_1; cursor_1 < ((row_1 * 2 * col_1) + row_1 - 1); cursor_1 = cursor_1 + (2 * col_1) + 1 ) {
             int c = 0;
-            for (int step = 0; step < (2 * col_2); step = step + 2) { //step < 6; step += 2
+            for (int step = 0; step < (2 * col_2); step = step + 2) {
                 cursor_2 = step;
-                for (int tmp = 0; tmp < (2 * col_2); tmp = tmp + 2) { //tmp < 6; tmp += 2
+                for (int tmp = 0; tmp < (2 * col_1); tmp = tmp + 2) {
                     fseek(m_1, cursor_1, SEEK_SET);
                     fseek(m_2, cursor_2, SEEK_SET);
                     i = fgetc(m_1);
                     j = fgetc(m_2);
+                    //printf("%c : %c\n", i, j);
                     int num_1 = i - '0';
                     int num_2 = j - '0';
                     c = c + (num_1 * num_2);
                     cursor_1 = cursor_1 + 2;
-                    cursor_2 = cursor_2 + (2 * col_1) + 1;
+                    cursor_2 = cursor_2 + (2 * col_2) + 1;
                 }
                 //nums[count] = c;
-                count++;
+                //count++;
                 fprintf(m_3, "%i ", c);
                 c = 0;
-                cursor_1 = cursor_1 - (2 * row_1);
+                cursor_1 = cursor_1 - (2 * row_2);
             }
             //nums[count] = 82;
-            count++;
+            //count++;
             fprintf(m_3, "\n");
         }
     }
@@ -145,6 +146,7 @@ void main() {
 
 int* check_sizes(FILE* m_1, FILE* m_2) {
     //Матрица m_1 имеет размеры A x B, а матрица m_2 имеет размеры C x D. Начинаться матрица должна с числа и между числами должен быть 1 пробел.
+    //Несмотря на то, что идет проверка на размерность матриц, калькулятор работает только с матрицами N x N
     //Числа должны быть в диапазоне от 0 до 9!
     int A = 0;
     int B = 0;
@@ -155,32 +157,32 @@ int* check_sizes(FILE* m_1, FILE* m_2) {
     while ((c = fgetc(m_1)) != EOF) {
         if (c != '\n' && fl == 0) {
             if (c != ' ') {
-                A++;
+                B++;
             }
         }
         else {
             fl = 1;
             if (c == '\n') {
-                B++;
+                A++;
             }
         }
     }
-    B++;
+    A++;
     fl = 0;
     while ((c = fgetc(m_2)) != EOF) {
         if (c != '\n' && fl == 0) {
             if (c != ' ') {
-                C++;
+                D++;
             }
         }
         else {
             fl = 1;
             if (c == '\n') {
-                D++;
+                C++;
             }
         }
     }
-    D++;
+    C++;
     int *temp = (int*)malloc(sizeof(int) * 4);
     *temp = A;
     *(temp + 1) = B;
