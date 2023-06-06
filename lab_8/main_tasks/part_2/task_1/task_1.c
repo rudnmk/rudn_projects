@@ -9,6 +9,9 @@ int* check_sizes(FILE* m_1, FILE* m_2);
 
 
 void main() {
+    FILE* cleaning_results = fopen("matrix_3(RESULT).txt", "w");
+    fputs("", cleaning_results);
+    fclose(cleaning_results);
     FILE* m_1 = fopen("matrix_1(LEFT).txt", "r");
     FILE* m_2 = fopen("matrix_2(RIGHT).txt", "r");
     FILE* m_3 = fopen("matrix_3(RESULT).txt", "a");
@@ -18,6 +21,7 @@ void main() {
     int col_1 = arr[1];
     int row_2 = arr[2];
     int col_2 = arr[3];
+    free(arr);
     //int nums[100];
     int count = 0;
     if (col_1 != row_2) {
@@ -183,4 +187,5 @@ int* check_sizes(FILE* m_1, FILE* m_2) {
     *(temp + 2) = C;
     *(temp + 3) = D;
     return temp;
+    free(temp);
 }
